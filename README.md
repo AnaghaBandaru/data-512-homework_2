@@ -66,6 +66,31 @@ Schema:
 - *DataAcquisitionAndAnalysis.ipnyb* : In this notebook, First the data is acquired using the pageviews API. and then the required visual analysis is done for the Dinosaur articles subset for desktop and mobile access type.
 
 ## Process followed for the assignment
+This is the process I followed for the assignment. 
+
+1. Data Acquisition:  I loaded the politician and population csv files before using the Wikimedia API to get the revision Id of each article. Usinf this revision id, I then called the ORES API to the the quality prediction for the corresponding articles.
+
+2. Data Inconsistencies: 
+    - Politician Dataset : 2 records are entirely duplicated and 46 articles/politicians have more than 1 records (with different country values but the same link is provided). I removed the completely duplicated records but did not process the 46 articles with multiple records as I had to deal with it in a case-by-case basis. Further details are provided in the jupyter notebook.
+    - Population Dataset : 6 countries had 0 population and I removed these countries from the final dataset.
+    - Revision id : On requesting the revision id, 7 articles did not return one and I removed these records from the final dataset.
+    - Combining the Politician and Population datasets : 1 country present in the politician dataset was not present in the population dataset (Korean), I removed the articles corresponding to this country. 25 countries present in the population dataset did not have any corresponding articles in the politician dataset and I also removed these records. A list of all these countries is provided in the wp_countries-no_match.txt file.
+
+3. Basic Data Processing: 
+    - In the politician dataset, I renamed the columns and dropped the url column after retrieving the revision ids.
+    - In the population dataset, the countries and regions are provided in a hierarchical manner in the 'Geography' column with regions in capital case, I extracted the region values and created a new column in the dataset with the matching region values for a country. I retained the region at the lowest hierarchical level provided. There are a total of 18 regions
+
+5. Preparing Master Dataset
+    -  I combined the politician and population dataset with the corresponding revision id's and article quality scores to generate the final dataset. This dataset contained 7474 articles and 203 countries.
+
+6. Analysis
+    - For the analysis, I created two tables for the country and region ranking.
+    - For the country ranking, I first calculated the count of total and high quality articles for each country and then calculated the per capita values using the corresponding population values for each country. I did not convert the values to millions as the ranking won't be affected.
+    - For the region ranking, I aggregated the count of total and high quality articles for all the countries in a region and loaded the corresponding population values provided by region in the initial population dataset, I then calculated the per capita values.
+
+7. Results
+    - I generated the required results using the two tables created above by sorting the data either by total article or high quality count and then using the head() function to get the required number of values. 
+
 
 
 ## Research Implications
@@ -79,9 +104,10 @@ processing and analysis?
 
     We see that the bottom 10 country list by both total coverage and high quality article coverage consists of all non-english speaking countries, this could indicate a high language bias.
     We also find that the top 10 country list generally consists of countries with really low populations (mean for population is around 38 million and all the values foor population in the top 10 list are below 6 million), this indicates that there is a per capita bias.This is probably not the best way to account for varying population sizes for the countries because we do not see an obvious trend between the number of articles and the population of a country. To account for this, we can calculate the average per capita article coverage for all countries and discount that from the values.
-    
+
 3. Can you think of a realistic data science research situation where using these data
 (to train a model, perform a hypothesis-driven research, or make business
 decisions) might create biased or misleading results, due to the inherent gaps and
 limitations of the data?
-Let us assume, a research group was trying to find the most relevant and popular politicians in Asia by using this data. Assuming they include the predicted ORES score for the politicians for their ranking - with politicians with higher quality wikipedia articles having a higher rank, their results would be heavily biased as the training model would represent the english-speaking countries far more than other countries. Using this data would generate a very biased ranking as the data used in the training model is representing a different domain  to the domain of data they would be testing on.
+
+    Let us assume, a research group was trying to find the most relevant and popular politicians in Asia by using this data. Assuming they include the predicted ORES score for the politicians for their ranking - with politicians with higher quality wikipedia articles having a higher rank, their results would be heavily biased as the training model would represent the english-speaking countries far more than other countries. Using this data would generate a very biased ranking as the data used in the training model is representing a different domain  to the domain of data they would be testing on.
