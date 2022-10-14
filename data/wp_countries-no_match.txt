@@ -1,0 +1,38 @@
+Liechtenstein
+Monaco
+San Marino
+Nauru
+Palau
+Tuvalu
+Korean
+Liechtenstein
+Monaco
+Nauru
+Palau
+San Marino
+Tuvalu
+Western Sahara
+Mauritius
+Mayotte
+Reunion
+Sao Tome and Principe
+eSwatini
+Canada
+United States
+Curacao
+Guadeloupe
+Martinique
+Puerto Rico
+French Guiana
+Brunei
+Philippines
+China,  Hong Kong SAR
+China,  Macao SAR
+Ireland
+United Kingdom
+Australia
+French Polynesia
+Guam
+Kiribati
+New Caledonia
+New Zealand
