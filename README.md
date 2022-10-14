@@ -63,7 +63,7 @@ Schema:
 
 **source**:
 
-- *DataAcquisitionAndAnalysis.ipnyb* : In this notebook, First the data is acquired using the pageviews API. and then the required visual analysis is done for the Dinosaur articles subset for desktop and mobile access type.
+- *DataAcquisitionAndAnalysis.ipnyb* : In this notebook, I bring in the data from different sources before following the steps detailed in process for Analysis. 
 
 ## Process followed for the assignment
 This is the process I followed for the assignment. 
