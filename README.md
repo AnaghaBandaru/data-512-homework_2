@@ -2,7 +2,7 @@
 
 ## Goal
 
-The goal of this taskis to explore the concept of bias in data using Wikipedia articles. We consider articles on political figures from different countries which is combined with a dataset of the country populations, and use a dataset created from calling the API for a machine learning service called ORES to estimate the quality of each article. We then perform an analysis of how the coverage of politicians on Wikipedia and the quality of articles about politicians varies among countries.
+The goal of this task is to explore the concept of bias in data using Wikipedia articles. We consider articles on political figures from different countries which is combined with a dataset of the country populations, and use a dataset created from calling the API for a machine learning service called ORES to estimate the quality of each article. We then perform an analysis of how the coverage of politicians on Wikipedia and the quality of articles about politicians varies among countries.
 
 ## Data Source
 
